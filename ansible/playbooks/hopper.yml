@@ -100,11 +100,11 @@
     user: hopper
   
   roles:
-    #- firewall
+    - firewall
     - hopper
-    #- housekeeping
-    #- ntp
-    #- logrotate
+    - housekeeping
+    - ntp
+    - logrotate
     - vim
     - atom-packages
 

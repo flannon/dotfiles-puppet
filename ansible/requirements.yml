@@ -27,10 +27,10 @@
   version: 1.5.3
   name: ntp
 
-## vim role
-#- src: https://github.com/flannon/ansible-role-vim.git
-#  version: master
-#  name: vim
+# vim role
+- src: https://github.com/flannon/ansible-role-vim.git
+  version: fedora
+  name: vim
 
 # atom-packages
 - src: https://github.com/hnakamur/ansible-role-atom-packages

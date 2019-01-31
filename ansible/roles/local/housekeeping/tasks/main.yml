@@ -3,6 +3,7 @@
   dnf: 
     name: 
     - git
+    - golang
     - openssl
     - python2-pip
     - vim-enhanced

@@ -1,0 +1,57 @@
+---
+# tasks file for hopper
+- name: virtualbox repo file
+  template: 
+    src: templates/virtualbox.repo.j2
+    dest: /etc/yum.repos.d/virtualbox.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- name: packages
+  dnf:
+    name:
+      - awscli
+      - binutils
+      - clang
+      - cmake
+      - dkms
+      - docker
+      - gcc
+      - glibc-devel
+      - glibc-headers
+      - jq
+      - kernel-headers
+      - kernel-devel 
+      - libgomp
+      - libxkbcommon
+      - make
+      - patch
+      - qt5-qtx11extras
+      - VirtualBox-5.2
+      - vagrant
+
+- name: pip install packages
+  pip:
+    name:
+      - molecule
+        
+- name: check if /usr/local/bin/terraform exists
+  stat:
+    path: /usr/local/bin/terraform
+  register: terraform_executable
+
+- name: download and unpack terraform zip archive
+  unarchive:
+    src: "https://releases.hashicorp.com/terraform/{{ version }}/terraform_{{ version }}_linux_amd64.zip"
+    dest: "/usr/local/bin/"
+    remote_src: yes
+  when: terraform_executable.stat.exists == false
+
+- name: "bashrc for {{ user }}"
+  template:
+    src: templates/bashrc.j2
+    dest: ~{{user}}/.bashrc
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0644
