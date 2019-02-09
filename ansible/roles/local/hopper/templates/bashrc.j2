@@ -6,7 +6,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific environment
-PATH="/usr/local/bin/packer:$HOME/.local/bin:$HOME/bin:$PATH"
+PATH="/usr/local/bin/packer:$HOME/.local/bin:$HOME/bin:/var/lib/snapd/snap/bin:$PATH"
 export PATH
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
@@ -28,4 +28,4 @@ set -o vi
 export GOPATH=${HOME}/go
 
 export GOPATH_K8S=${HOME}/go/src/k8s.io/kubernetes
-export PATH=${GOPATH_K8S}/third_party/etcd:${PATH}
+export PATH=${GOPATH_K8S}/third_party/etcd:${GOPATH}/bin:${PATH}
