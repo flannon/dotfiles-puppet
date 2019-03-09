@@ -5,6 +5,11 @@
     - "{{ ansible_os_family }}".yml
   tags: vars
 
+	
 - dnf:
-    name: vim-enhanced
-    state: "{{ role_state['package'] }}"
+    #name: vim-enhanced
+    #state: "{{ role_state['package'] }}"
+    name: install atom
+    name: 'https://atom.io/download/rpm'
+    state: present
+    
