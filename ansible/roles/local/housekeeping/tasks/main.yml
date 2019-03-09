@@ -17,5 +17,7 @@
     state: latest
 
 - pip:
-    name: pip
+    name: 
+      - pip
+      - psutil
     state: latest
