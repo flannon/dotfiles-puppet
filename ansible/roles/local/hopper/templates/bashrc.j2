@@ -29,3 +29,21 @@ export GOPATH=${HOME}/go
 
 export GOPATH_K8S=${HOME}/go/src/k8s.io/kubernetes
 export PATH=${GOPATH_K8S}/third_party/etcd:${GOPATH}/bin:${PATH}
+
+# env vars
+#export TF_CLI_ARGS_APPLY="-auto-approve"
+export TF_PLUGIN_CACHE_DIR="${HOME}/.terraform.d/plugin-cache"
+
+#  openstack env vars
+[[ -f ${HOME}/.ssh/brooklyn-ca-bundle.trust.crt ]] && \
+  export OS_CACERT="${HOME}/.ssh/brooklyn-ca-bundle.trust.crt"
+
+export OS_CACERT=~/.ssh/brooklyn-ca-bundle.trust.crt
+
+#export MINISHIFT_USERNAME=
+#export MINISHIFT_PASSWORD=
+export MINISHIFT_CPUS=4
+export MINISHIFT_DISK_SIZE=40GB
+export MINISHIFT_VM_DRIVER=virtualbox
+export MINISHIFT_MEMORY=8192
+
