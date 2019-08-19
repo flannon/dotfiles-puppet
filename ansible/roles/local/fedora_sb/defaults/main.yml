@@ -1,0 +1,3 @@
+---
+# defaults file for hopper
+flatpak_state: present
