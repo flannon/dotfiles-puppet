@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# setup.sh needs to be run twice on first run
+#
+
 [[ $(id -u) != 0 ]] && echo "Must be run as root. Exiting..." && exit 3
 
 [[ $1 == "--rollback" || $1 == "-r" ]] && \
@@ -17,8 +20,13 @@ sed -i 's/^PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd
   	sudo sed -i \
   	's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers 
 
+[[ ! -f /etc/yum.repos.d/rpmfusion-free.repo ]]  && \
+	rpm-ostree  install \
+	https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+	https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+	systemctl reboot
 
-rpm-ostree install cinnamon clang cmake facter guestfs-browser htop iotop make libguestfs-tools libvirt-daemon-config-network libvirt-daemon-kvm python python-libguestfs qemu-kvm rpmdevtools ruby strace tmux vim virt-install virt-manager virt-viewer virt-top --reboot
+rpm-ostree install cinnamon clang cmake compat-ffmpeg28 facter guestfs-browser htop iotop make libguestfs-tools libvirt-daemon-config-network libvirt-daemon-kvm python python-libguestfs qemu-kvm rpmdevtools ruby strace tmux vim virt-install virt-manager virt-viewer virt-top --reboot
 
 #rpm-ostree install \
 #        cinnamon \
