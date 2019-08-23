@@ -58,8 +58,8 @@ done
 cd $OLDPWD
 
 # ansible config
-OSNAME=$(facter os.name)
-OSMAJ=$(facter os.release.major)
+#OSNAME=$(facter os.name)
+#OSMAJ=$(facter os.release.major)
 
 
 # Load vim plugins

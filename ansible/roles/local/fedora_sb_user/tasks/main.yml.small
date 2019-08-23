@@ -1,0 +1,21 @@
+---
+# tasks file for fedora_sb
+#- name: virtualbox repo file
+#  template: 
+#    src: templates/virtualbox.repo.j2
+#    dest: /etc/yum.repos.d/virtualbox.repo
+#    owner: root
+#    group: root
+#    mode: 0644
+
+- name: vscode repo file
+  template: 
+    src: templates/vscode.repo.j2
+    dest: /etc/yum.repos.d/vscode.repo
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+  become_method: su
+  become_user: root
+

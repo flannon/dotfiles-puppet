@@ -1,0 +1,210 @@
+---
+#- name: dnf update
+  #dnf:
+    #name: '*'
+    #state: "{{ package_state }"
+
+- name: Install libXScrnSaver and libXScrnSaver-devel
+  dnf:
+    name:
+      - libXScrnSaver
+      - libXScrnSaver-devel
+    state: "{{ package_state }}"
+
+- name: vscode repo file
+  template: 
+    src: templates/vscode.repo.j2
+    dest: /etc/yum.repos.d/vscode.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install VSCode
+  dnf:
+    name: code
+    state: "{{ package_state }}"
+ 
+- name: Group install Develoment tools
+  dnf:
+    name: '@Development Tools'
+    state: "{{ package_state }}"
+
+- name: Install firefox
+  dnf:
+    name: firefox
+    state: "{{ package_state }}"
+
+- name: Install snapd for snap package management
+  dnf:
+    name: snapd
+    state: "{{ package_state }}"
+
+- name: Install git
+  dnf:
+    name: git
+    state: "{{ package_state }}"
+
+#- name: install python2
+#  dnf:
+#    name: python
+#    state: "{{ package_state }}"
+
+#- name: Install jq
+#  dnf:
+#    name: jq
+#    state: "{{ package_state }}"
+#  become: true
+#  become_user: root
+#  become_method: su
+
+- name: Install make
+  dnf:
+    name: make
+    state: "{{ package_state }}"
+
+- name: Install patch
+  dnf:
+    name: patch
+    state: "{{ package_state }}"
+
+- name: Install vim
+  dnf:
+    name: vim
+    state: "{{ package_state }}"
+
+- name: Install kernel-headers
+  dnf:
+    name: kernel-headers
+    state: "{{ package_state }}"
+
+#- name: Install kernel-devel
+#  dnf:
+#    name: kernel-devel
+#    state: "{{ package_state }}"
+
+- name: Install binutils 
+  dnf:
+    name: binutils
+    state: "{{ package_state }}"
+
+#- name: Install clang
+#  dnf:
+#    name: clang
+#    state: "{{ package_state }}"
+
+#- name: Install cmake
+#  dnf:
+#    name: cmake
+#    state: "{{ package_state }}"
+
+#- name: Install dkms
+#  dnf:
+#    name: dkms
+#    state: "{{ package_state }}"
+
+#- name: Install dnf-utils
+#  dnf:
+#    name: dnf-utils
+#    state: "{{ package_state }}"
+
+#- name: Install device-mapper-persistent-data
+#  dnf:
+#    name: device-mapper-persistent-data
+#    state: "{{ package_state }}"
+
+#- name: Install facter
+#  dnf:
+#    name: facter
+#    state: "{{ package_state }}"
+
+- name: Install glibc-devel
+  dnf:
+    name: glibc-devel
+    state: "{{ package_state }}"
+
+- name: Install glibc-headers
+  dnf:
+    name: glibc-headers
+    state: "{{ package_state }}"
+
+#- name: Install golang
+#  dnf:
+#    name: golang
+#    state: "{{ package_state }}"
+
+#- name: Install golang-headers
+#  dnf:
+#    name: golang-headers
+#    state: "{{ package_state }}"
+
+- name: Install libgomp
+  dnf:
+    name: libgomp
+    state: "{{ package_state }}"
+
+#- name: Install libselinux-python
+#  dnf:
+#    name: libselinux-python
+#    state: "{{ package_state }}"
+
+- name: Install libxkbcommon
+  dnf:
+    name: libxkbcommon
+    state: "{{ package_state }}"
+
+#- name: Install lvm2
+#  dnf:
+#    name: lvm2
+#    state: "{{ package_state }}"
+
+#- name: Install net-tools
+#  dnf:
+#    name: net-tools
+#    state: "{{ package_state }}"
+
+#- name: Install openconnect
+#  dnf:
+#    name: openconnect
+#    state: "{{ package_state }}"
+
+#- name: Install python2-devel
+#  dnf:
+#    name: python2-devel
+#    state: "{{ package_state }}"
+#
+#- name: Install python3-devel
+#  dnf:
+#    name: python3-devel
+#    state: "{{ package_state }}"
+
+#- name: Install qt5-qtx11extras
+#  dnf:
+#    name: qt5-qtx11extras
+#    state: "{{ package_state }}"
+
+#- name: Install redhat-rpm-config
+#  dnf:
+#    name: redhat-rpm-config
+#    state: "{{ package_state }}"
+
+#- name: pip install packages
+#  pip:
+#    name:
+#      - boto
+#      - boto3
+#      - molecule
+#      - six
+#      - awscli
+#    #executable: pip3
+#    extra_args: --user
+#  become: false
+        
+- name: "bashrc for {{ user }}"
+  template:
+    src: templates/bashrc.j2
+    dest: ~{{ user }}/.bashrc
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0644
+  become: false
+

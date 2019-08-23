@@ -26,29 +26,18 @@ sed -i 's/^PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd
 	https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
 	systemctl reboot
 
-rpm-ostree install cinnamon clang cmake compat-ffmpeg28 facter guestfs-browser htop iotop make libguestfs-tools libvirt-daemon-config-network libvirt-daemon-kvm python python-libguestfs qemu-kvm rpmdevtools ruby strace tmux vim virt-install virt-manager virt-viewer virt-top --reboot
+#[[ ! -f /etc/yum.repos.d/vscode.repo ]]  && \
+#	sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+#  	systemctl reboot
 
-#rpm-ostree install \
-#        cinnamon \
-#        cmake \
-#        facter \
-#        guestfs-browser \ 
-#        #htop \
-#        #iotop \
-#        make \ 
-#        libvirt-daemon-config-network \
-#        libvirt-daemon-kvm \
-#        python python-libguestfs \
-#        qemu-kvm \
-#        ruby \
-#        strace \
-#        vim \
-#        virt-install \
-#        virt-manager \
-#        virt-viewer \
-#        virt-top \
-#        libguestfs-tools \
-#  	--reboot
+rpm-ostree install cinnamon compat-ffmpeg28 
+
+#rpm-ostree install cinnamon compat-ffmpeg28 guestfs-browser libguestfs-tools libvirt-daemon-config-network libvirt-daemon-kvm python python-libguestfs qemu-kvm rpmdevtools ruby virt-install virt-manager virt-viewer virt-top --reboot
+
+#rpm-ostree install cinnamon compat-ffmpeg28 guestfs-browser libguestfs-tools libvirt-daemon-config-network libvirt-daemon-kvm python python-libguestfs qemu-kvm rpmdevtools ruby strace tmux vim virt-install virt-manager virt-viewer virt-top --reboot
+
+ 
+#rpm-ostree install cinnamon clang cmake compat-ffmpeg28 facter guestfs-browser htop iotop make libguestfs-tools libvirt-daemon-config-network libvirt-daemon-kvm python python-libguestfs qemu-kvm rpmdevtools ruby strace tmux vim virt-install virt-manager virt-viewer virt-top --reboot
 
 systemctl enable sshd
 systemctl start sshd

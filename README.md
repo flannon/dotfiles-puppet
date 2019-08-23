@@ -9,11 +9,16 @@ To configuer $HOME run,
 
     make config
 
-Make the control container,
+Make the control and $USER containers,
 
-    toolbox create --container control
+	build.sh
 
-Connect to control and run ansible,
+Connect to control and run the configure script,
 
-    toolbox enter -c control
-    make build
+	cd ~/.dotfiles
+        ./configure_toolbox.sh control
+
+Connect to $USER  and run the configure script,
+
+	cd ~/.dotfiles
+        ./configure_toolbox.sh $USER
