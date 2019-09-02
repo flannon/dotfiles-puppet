@@ -29,6 +29,7 @@
     group: "{{ user }}"
     mode: 0755
     state: directory
+  become: false
 
 - name: kube contrib
   git:
@@ -41,6 +42,7 @@
     repo: https://github.com/kubernetes-sigs/kubespray.git
     dest: "/home/{{ user }}/Projects/kubernetes/kubespray"
     version: v2.11.0
+  become: false
 
 # Set up spinnaker
 - name: "spinnaker project directory"
@@ -50,9 +52,11 @@
     group: "{{ user }}"
     mode: 0755
     state: directory
+  become: false
 
 - name: spinnaker
   git:
     repo: https://github.com/spinnaker/spinnaker.git
     dest: "/home/{{ user }}/Projects/spinnaker/spinnaker"
     version: version-0.28.0
+  become: false

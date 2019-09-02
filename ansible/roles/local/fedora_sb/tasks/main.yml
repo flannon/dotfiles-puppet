@@ -3,32 +3,31 @@
   debug:
     msg: System message from the main.yml
 
-#- import_tasks: packages.yml
-  #tags:
-  #- packages
+- import_tasks: packages.yml
+  tags:
+    - packages
 
-#- import_tasks: podman.yml
-  #tags:
-  #- podman
+- import_tasks: podman.yml
+  tags:
+    - podman
 
 
-#- import_tasks: projects.yml
-   #tags:
-   #- projects
+- import_tasks: projects.yml
+  tags:
+    - projects
 
-#- import_tasks: nexus.yml
-   #tags:
-  #- nexus
+- import_tasks: nexus.yml
+  tags:
+    - nexus
 
-#- import_tasks: jenkins.yml
-   #tags:
-    #- jenkins
+- import_tasks: jenkins.yml
+  tags:
+    - jenkins
 
 - import_tasks: minikube.yml
   tags:
     - minikube
 
-#- import_tasks: users.yml
-   #tags:
-      #- users
-
+- import_tasks: users.yml
+  tags:
+    - users
