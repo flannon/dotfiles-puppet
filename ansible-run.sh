@@ -15,20 +15,25 @@ echo $1
 [[ $1 == "control" ]] && PLAYBOOK=$1 
 [[ $1 == $USER ]] && PLAYBOOK="user" 
 
-echo HERE
-CONTAINER=$1
+#echo HERE
+#CONTAINER=$1
 DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 
-#  Must be run as no priviledged user
+#  Must be run as none priviledged user
 abort() { echo -e "${RED}$* ${NC}" >&2 && exit 1; }
 [[ $USER == "root" ]] && abort \
    "Can't be run as root, must be run as $SUDO_USER."
 
 echo $PLAYBOOK
 
+HOSTNAME=$(hostname)
 # configure control
-cd ${DIRNAME}/ansible
-ansible-galaxy install -r requirements.yml
-ansible-playbook -e user=${USER} -i ./inventory playbooks/${PLAYBOOK}.yml
-cd -
+if [[ $HOSTNAME == "toolbox" ]]; then
+  cd ${DIRNAME}/ansible
+  ansible-galaxy install -r requirements.yml
+  ansible-playbook -e user=${USER} -i ./inventory playbooks/${PLAYBOOK}.yml
+  cd -
+fi
+
+[[ $HOSTNAME != "toolbox" ]] && echo "Not yet implemented"
 

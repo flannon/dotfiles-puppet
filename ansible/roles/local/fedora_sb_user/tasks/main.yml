@@ -44,11 +44,6 @@
     name: git
     state: "{{ package_state }}"
 
-#- name: install python2
-#  dnf:
-#    name: python
-#    state: "{{ package_state }}"
-
 #- name: Install jq
 #  dnf:
 #    name: jq
@@ -132,11 +127,6 @@
 #    name: golang
 #    state: "{{ package_state }}"
 
-#- name: Install golang-headers
-#  dnf:
-#    name: golang-headers
-#    state: "{{ package_state }}"
-
 - name: Install libgomp
   dnf:
     name: libgomp
@@ -187,6 +177,11 @@
 #    name: redhat-rpm-config
 #    state: "{{ package_state }}"
 
+#- name: Install ruby
+#  dnf:
+#    name: ruby
+#    state: "{{ package_state }}"
+
 #- name: pip install packages
 #  pip:
 #    name:
@@ -207,4 +202,15 @@
     group: "{{ user }}"
     mode: 0644
   become: false
+
+- name: "bashrc for root"
+  template:
+    src: templates/rootbashrc.j2
+    dest: ~root/.bashrc
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+  become_user: root
+  become_method: su
 

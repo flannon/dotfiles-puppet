@@ -1,7 +1,8 @@
 ---
 - hosts: 127.0.0.1
   user: terrance
-  become: yes
+  #become: yes
+  become: false
   connection: ssh
   gather_facts: true
 

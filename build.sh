@@ -9,19 +9,22 @@ stat_container () {
 	  2>&1 1> /dev/null
 }
 
-#c="control"
-#stat_container $c
-#[[ $? != 0 ]] && toolbox create --container $c
-#toolbox run --container $c bash -c "cd ${INSTALLDIR}/ansible && \
-#	ansible-galaxy install -r requirements.yml"
-#toolbox run --container $c bash -c "cd ${INSTALLDIR}/ansible && \
-#	ansible-playbook -e user=${USER} -i ./inventory playbooks/control.yml"
+c="control"
+stat_container $c
+[[ $? != 0 ]] && toolbox create --container $c
+toolbox run --container $c bash -c "sudo dnf install -y ansible python2 python2-pip"
+toolbox run --container $c bash -c "cd ${INSTALLDIR}/ansible && \
+	ansible-galaxy install -r requirements.yml"
+toolbox run --container $c bash -c "cd ${INSTALLDIR}/ansible && \
+	ansible-playbook -e user=${USER} -i ./inventory playbooks/control.yml"
 
 c=$USER
 echo $c
 stat_container $c
 [[ $? != 0 ]] && toolbox create --container $c 
 toolbox run --container $c bash -c "sudo dnf install -y ansible"
+toolbox run --container $c bash -c "cd ${INSTALLDIR}/ansible && \
+	ansible-galaxy install -r requirements.yml"
 toolbox run --container $c bash -c "cd ${INSTALLDIR}/ansible && \
 	ansible-playbook -vvvv -e user=${USER} -i ./inventory playbooks/user.yml"
 

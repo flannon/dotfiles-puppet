@@ -1,75 +1,34 @@
 ---
-# tasks file for fedora_sb
-- name: Install flathub flatpak repo
-  flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+- name: Debug message from main.yml
+  debug:
+    msg: System message from the main.yml
 
-#- name: Uninstall flatpaks
-#  flatpak:
-#    name: "{{ item }}"
-#    state: absent
-#  with_items:
-#    - com.visualstudio.code.oss
+#- import_tasks: packages.yml
+  #tags:
+  #- packages
 
-- name: Install flatpaks
-  flatpak:
-    name: "{{ item }}"
-    state: "{{ flatpak_state }}"
-  with_items:
-    - com.calibre_ebook.calibre
-    - com.calibre_ebook.calibre
-    - com.github.bilelmoussaoui.Authenticator
-    - com.github.mdh34.hackup
-    - com.github.unrud.djpdf
-    - com.jgraph.drawio.desktop
-    - com.slack.Slack
-    - com.uploadedlobster.peek
-    - com.vinszent.GnomeTwitch
-    - com.visualstudio.code
-    - com.xnview.XnConvert
-    - com.xnview.XnRetro
-    - com.xnview.XnSketch
-    - com.xnview.XnViewMP
-    - ind.ie.Gnomit
-    - io.atom.Atom
-    - io.github.GnomeMpv
-    - net.bartkessels.getit
-    #- org.freedesktop.Platform.ffmpeg/x86_64/1.6
-    - org.gimp.Gimp
-    - org.gnome.Books
-    - org.gnome.Calculator
-    - org.gnome.Calendar
-    - org.gnome.Chess
-    - org.gnome.Contacts
-    - org.gnome.clocks
-    - org.gnome.eog
-    - org.gnome.ghex
-    - org.gnome.gitg
-    - org.gnome.Music
-    - org.gnome.Notes
-    - org.gnome.Podcasts
-    - org.gnome.Polari
-    - org.gnome.PasswordSafe
-    - org.gnome.Shotwell
-    - org.gnome.SoundRecorder
-    - org.gnome.Totem
-    - org.gnome.Weather
-    - org.inkscape.Inkscape
-    - org.photoqt.Photoqt
-    - org.signal.Signal
-    - org.videolan.VLC
-    - org.vim.Vim
-    - org.wireshark.Wireshark
-    - org.libreoffice.LibreOffice
-    - org.zotero.Zotero
-    - us.zoom.Zoom
-    
-- name: "bashrc for {{ user }}"
-  template:
-    src: templates/bashrc.j2
-    dest: ~{{ user }}/.bashrc
-    owner: "{{ user }}"
-    group: "{{ user }}"
-    mode: 0644
+#- import_tasks: podman.yml
+  #tags:
+  #- podman
+
+
+#- import_tasks: projects.yml
+   #tags:
+   #- projects
+
+#- import_tasks: nexus.yml
+   #tags:
+  #- nexus
+
+#- import_tasks: jenkins.yml
+   #tags:
+    #- jenkins
+
+- import_tasks: minikube.yml
+  tags:
+    - minikube
+
+#- import_tasks: users.yml
+   #tags:
+      #- users
+

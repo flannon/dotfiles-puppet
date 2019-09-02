@@ -28,9 +28,9 @@
   name: ntp
 
 # vim role
-- src: https://github.com/flannon/ansible-role-vim.git
-  version: fedora
-  name: vim
+#- src: https://github.com/flannon/ansible-role-vim.git
+#  version: fedora
+#  name: vim
 
 # atom-packages
 - src: https://github.com/hnakamur/ansible-role-atom-packages

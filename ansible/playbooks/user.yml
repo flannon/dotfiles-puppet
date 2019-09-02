@@ -5,7 +5,7 @@
   become_method: su
   become_user: root
   connection: local
-  gather_facts: false
+  gather_facts: true
 
   vars: 
     # To uninstall rpms flip package_state to absent
@@ -89,7 +89,8 @@
 
   roles:
     #- housekeeping
-    #- vim
+    #- atom
     #- atom-packages
     - fedora_sb_user
+    - vim
 

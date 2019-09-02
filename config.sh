@@ -2,6 +2,7 @@
 
 set -e
 
+DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.5.0/bin:$PATH"
 
 BIN=~/bin
@@ -44,6 +45,9 @@ cd ${SOURCE}/bin
 
 # Link to self if it doesn't exist
 [[ ! -f ~/bin/dotbuild ]] && ln -s $FULL_PATH ~/bin/dotbuild
+
+# Link to ansible-run
+#[[ ! -f ~/bin/ansible-run ]] && ln -s ${DIRNAME}/ansible-run.sh ~/bin/ansible-run
 
 # link binaries
 for i in $(ls);

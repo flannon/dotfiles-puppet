@@ -1,7 +1,12 @@
 #!/bin/bash
-
+#
+# NOTE: $0 must be run twice
+#
 # setup.sh needs to be run twice on first run
 #
+
+RPMFUSION=/etc/yum.repos.d/rpmfusion-free.repo 
+VSCODE=/etc/yum.repos.d/vscode.repo 
 
 [[ $(id -u) != 0 ]] && echo "Must be run as root. Exiting..." && exit 3
 
@@ -20,22 +25,22 @@ sed -i 's/^PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd
   	sudo sed -i \
   	's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers 
 
-[[ ! -f /etc/yum.repos.d/rpmfusion-free.repo ]]  && \
+[[ ! -f $VSCODE ]]  && \
+	sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo' 
+
+[[ ! -f $RPMFUSION ]]  && \
 	rpm-ostree  install \
 	https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
 	https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
 	systemctl reboot
 
-#[[ ! -f /etc/yum.repos.d/vscode.repo ]]  && \
-#	sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-#  	systemctl reboot
+[[ -f $VSCODE && -f $RPMFUSION ]]  && \
+  rpm-ostree install cinnamon compat-ffmpeg28 strace vim --reboot
 
-rpm-ostree install cinnamon compat-ffmpeg28 
 
 #rpm-ostree install cinnamon compat-ffmpeg28 guestfs-browser libguestfs-tools libvirt-daemon-config-network libvirt-daemon-kvm python python-libguestfs qemu-kvm rpmdevtools ruby virt-install virt-manager virt-viewer virt-top --reboot
 
 #rpm-ostree install cinnamon compat-ffmpeg28 guestfs-browser libguestfs-tools libvirt-daemon-config-network libvirt-daemon-kvm python python-libguestfs qemu-kvm rpmdevtools ruby strace tmux vim virt-install virt-manager virt-viewer virt-top --reboot
-
  
 #rpm-ostree install cinnamon clang cmake compat-ffmpeg28 facter guestfs-browser htop iotop make libguestfs-tools libvirt-daemon-config-network libvirt-daemon-kvm python python-libguestfs qemu-kvm rpmdevtools ruby strace tmux vim virt-install virt-manager virt-viewer virt-top --reboot
 
