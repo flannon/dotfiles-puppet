@@ -12,9 +12,9 @@
     mode: 0755
   become: false
 
-- name: "Ensure /home/{{ user }}/Project/local"
+- name: "Ensure /home/{{ user }}/Projects/local"
   file:
-    path: "/home/{{ user }}/Project/local"
+    path: "/home/{{ user }}/Projects/local"
     state: directory
     owner: "{{ user }}"
     group: "{{ user }}"

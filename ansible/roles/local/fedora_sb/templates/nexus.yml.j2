@@ -52,12 +52,12 @@ spec:
       runAsUser: 200
     volumeMounts:
     - mountPath: "{{ nexus_volume_mount_name }}"
-      name: "home-{{ user }}-Projects-local-nexus-nexus-data"
+      name: "home-{{ user }}-Services-nexus-nexus-data"
     workingDir: /
   volumes:
   - hostPath:
       path: "/home/{{ user }}{{ nexus_project_dir }}{{ nexus_volume_mount_name }}"
       type: Directory
-    name: "home-{{ user }}-Projects-local-nexus-nexus-data"
+    name: "home-{{ user }}-Services-nexus-nexus-data"
 status: {}
 

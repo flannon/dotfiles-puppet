@@ -3,6 +3,15 @@
   debug:
     msg: System message from the main.yml
 
+- name: "Ensure /home/{{ user }}/Services"
+  file:
+    path: "/home/{{ user }}/Services"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  become: false
+
 - import_tasks: packages.yml
   tags:
     - packages

@@ -64,12 +64,12 @@ spec:
     volumeMounts:
     #- mountPath: /home/{{ user }}{{ jenkins_project_dir }}{{ jenkins_volume_mount_name }}
     - mountPath: "/var{{ jenkins_volume_mount_name }}"
-      name: "home-{{ user }}-Projects-local-jenkins"
+      name: "home-{{ user }}-Services-jenkins"
     workingDir: /
   volumes:
   - hostPath:
       path: "/home/{{ user }}/{{ jenkins_project_dir }}{{ jenkins_volume_mount_name }}"
       type: Directory
-    name: "home-{{ user }}-Projects-local-jenkins"
+    name: "home-{{ user }}-Services-jenkins"
 status: {}
 
