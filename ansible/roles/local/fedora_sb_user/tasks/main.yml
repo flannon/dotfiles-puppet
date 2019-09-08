@@ -4,7 +4,7 @@
     #name: '*'
     #state: "{{ package_state }"
 
-- name: Install libXScrnSaver and libXScrnSaver-devel
+- name: Ensure libXScrnSaver and libXScrnSaver-devel
   dnf:
     name:
       - libXScrnSaver
@@ -19,27 +19,29 @@
     group: root
     mode: 0644
 
-- name: Install VSCode
+- name: Ensure VSCode
   dnf:
     name: code
-    state: "{{ package_state }}"
+    #state: "{{ package_state }}"
+    update_cache: true
+    state: latest
  
 - name: Group install Develoment tools
   dnf:
     name: '@Development Tools'
     state: "{{ package_state }}"
 
-- name: Install firefox
+- name: Ensure firefox
   dnf:
     name: firefox
     state: "{{ package_state }}"
 
-- name: Install snapd for snap package management
+- name: Ensure snapd for snap package management
   dnf:
     name: snapd
     state: "{{ package_state }}"
 
-- name: Install git
+- name: Ensure git
   dnf:
     name: git
     state: "{{ package_state }}"
@@ -52,65 +54,61 @@
 #  become_user: root
 #  become_method: su
 
-- name: Install make
+- name: Ensure make
   dnf:
     name: make
     state: "{{ package_state }}"
 
-- name: Install patch
+- name: Ensure patch
   dnf:
     name: patch
     state: "{{ package_state }}"
 
-- name: Install vim
+- name: Ensure vim
   dnf:
-    name: vim
+    name: vim-enhanced
     state: "{{ package_state }}"
 
-- name: Install kernel-headers
+- name: Ensure kernel-headers
   dnf:
     name: kernel-headers
     state: "{{ package_state }}"
 
-#- name: Install kernel-devel
-#  dnf:
-#    name: kernel-devel
-#    state: "{{ package_state }}"
-
-- name: Install binutils 
+- name: Ensure binutils 
   dnf:
     name: binutils
     state: "{{ package_state }}"
 
-#- name: Install clang
-#  dnf:
-#    name: clang
-#    state: "{{ package_state }}"
+- name: Ensure clang
+  dnf:
+    name: clang
+    state: "{{ package_state }}"
 
-#- name: Install cmake
-#  dnf:
-#    name: cmake
-#    state: "{{ package_state }}"
+- name: Ensure cmake
+  dnf:
+    name: cmake
+    state: "{{ package_state }}"
 
-#- name: Install dkms
-#  dnf:
-#    name: dkms
-#    state: "{{ package_state }}"
+- name: Ensure dkms
+  dnf:
+    name: dkms
+    state: "{{ package_state }}"
 
-#- name: Install dnf-utils
-#  dnf:
-#    name: dnf-utils
-#    state: "{{ package_state }}"
+- name: Ensure dnf-utils
+  dnf:
+    name: dnf-utils
+    state: "{{ package_state }}"
 
-#- name: Install device-mapper-persistent-data
-#  dnf:
-#    name: device-mapper-persistent-data
-#    state: "{{ package_state }}"
+- name: Ensure device-mapper-persistent-data
+  dnf:
+    name: device-mapper-persistent-data
+    state: "{{ package_state }}"
 
-#- name: Install facter
-#  dnf:
-#    name: facter
-#    state: "{{ package_state }}"
+- name: Ensure facter
+  dnf:
+    name: facter
+    #state: "{{ package_state }}"
+    state: latest
 
 - name: Install glibc-devel
   dnf:
@@ -213,4 +211,3 @@
   become: true
   become_user: root
   become_method: su
-

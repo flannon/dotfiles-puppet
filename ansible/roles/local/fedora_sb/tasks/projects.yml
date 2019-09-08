@@ -3,9 +3,9 @@
   debug:
     msg: System message from the projects.yml
 
-- name: "Ensure /home/{{ user }}/Project"
+- name: "Ensure /home/{{ user }}/Projects"
   file:
-    path: "/home/{{ user }}/Project"
+    path: "/home/{{ user }}/Projects"
     state: directory
     owner: "{{ user }}"
     group: "{{ user }}"

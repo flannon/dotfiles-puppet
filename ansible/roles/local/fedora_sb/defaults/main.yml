@@ -22,3 +22,5 @@ jenkins_container_image_state: present
 minikube_project_dir: /Services/minikube
 minikube_volume_dir: /volumes
 minikube_service_name: minikube.service
+#
+terraform_version: 0.12.8
