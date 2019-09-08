@@ -81,6 +81,7 @@
       - vim-mode-plus
       - ex-mode
       - base16-syntax
+    terraform_version: 0.12.8
   
   tasks:
   - name: Debug message from localhost.localdomain 
