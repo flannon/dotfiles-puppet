@@ -35,7 +35,8 @@ sed -i 's/^PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd
 	systemctl reboot
 
 [[ -f $VSCODE && -f $RPMFUSION ]]  && \
-  rpm-ostree install cinnamon compat-ffmpeg28 strace vim --reboot
+  rpm-ostree install cinnamon compat-ffmpeg28 strace --reboot
+  #rpm-ostree install cinnamon compat-ffmpeg28 strace vim --reboot
 
 
 #rpm-ostree install cinnamon compat-ffmpeg28 guestfs-browser libguestfs-tools libvirt-daemon-config-network libvirt-daemon-kvm python python-libguestfs qemu-kvm rpmdevtools ruby virt-install virt-manager virt-viewer virt-top --reboot
