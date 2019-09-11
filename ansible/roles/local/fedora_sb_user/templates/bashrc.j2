@@ -19,6 +19,7 @@ alias ls="ls -F"
 alias rm="rm -i"
 alias ssh="ssh -o VisualHostKey=yes"
 alias vi=vim
+alias v=/usr/bin/vi
 #alias vbox=$(which vboxmanage)
 alias more=less
 alias enter="toolbox enter -c $USER"
@@ -47,3 +48,13 @@ export MINISHIFT_CPUS=4
 export MINISHIFT_DISK_SIZE=40GB
 export MINISHIFT_VM_DRIVER=virtualbox
 export MINISHIFT_MEMORY=8192
+
+
+[[ -f "/var/home/{{ user }}/google-cloud-sdk/path.bash.inc" ]] && \
+        source "/var/home/{{ user }}/google-cloud-sdk/path.bash.inc"
+
+# The next line enables bash completion for gcloud.
+[[ -f "/var/home/{{ user }}/google-cloud-sdk/completion.bash.inc" ]] && \
+        source '/var/home/{{ user }}/google-cloud-sdk/completion.bash.inc'
+
+

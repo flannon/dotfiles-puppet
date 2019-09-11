@@ -30,46 +30,46 @@
     #- com.calibre_ebook.calibre
     #- com.github.bilelmoussaoui.Authenticator
     #- com.github.mdh34.hackup
-    #- com.github.unrud.djpdf
-    #- com.jgraph.drawio.desktop
+    - com.github.unrud.djpdf
+    - com.jgraph.drawio.desktop
     #- com.uploadedlobster.peek
     #- com.vinszent.GnomeTwitch
-    #- com.xnview.XnConvert
-    #- com.xnview.XnRetro
-    #- com.xnview.XnSketch
-    #- com.xnview.XnViewMP
-    #- ind.ie.Gnomit
+    - com.xnview.XnConvert
+    - com.xnview.XnRetro
+    - com.xnview.XnSketch
+    - com.xnview.XnViewMP
+    - ind.ie.Gnomit
     #- io.atom.Atom
     #- io.github.GnomeMpv
-    #- net.bartkessels.getit
+    - net.bartkessels.getit
     ##- org.freedesktop.Platform.ffmpeg/x86_64/1.6
-    #- org.gimp.Gimp
+    - org.gimp.Gimp
     #- org.gnome.Books
-    #- org.gnome.Calculator
-    #- org.gnome.Calendar
+    - org.gnome.Calculator
+    - org.gnome.Calendar
     #- org.gnome.Chess
-    #- org.gnome.Contacts
-    #- org.gnome.clocks
-    #- org.gnome.eog
-    #- org.gnome.ghex
-    #- org.gnome.gitg
-    #- org.gnome.Music
-    #- org.gnome.Notes
-    #- org.gnome.Podcasts
+    - org.gnome.Contacts
+    - org.gnome.clocks
+    - org.gnome.eog
+    - org.gnome.ghex
+    - org.gnome.gitg
+    - org.gnome.Music
+    - org.gnome.Notes
+    - org.gnome.Podcasts
     #- org.gnome.Polari
-    #- org.gnome.PasswordSafe
+    - org.gnome.PasswordSafe
     #- org.gnome.Shotwell
-    #- org.gnome.SoundRecorder
+    - org.gnome.SoundRecorder
     #- org.gnome.Totem
-    #- org.gnome.Weather
+    - org.gnome.Weather
     #- org.inkscape.Inkscape
-    #- org.photoqt.Photoqt
+    - org.photoqt.Photoqt
     #- org.signal.Signal
-    #- org.videolan.VLC
-    #- org.wireshark.Wireshark
-    #- org.libreoffice.LibreOffice
-    #- org.zotero.Zotero
-    #- us.zoom.Zoom
+    - org.videolan.VLC
+    - org.wireshark.Wireshark
+    - org.libreoffice.LibreOffice
+    - org.zotero.Zotero
+    - us.zoom.Zoom
 
 # Make src directory
 - name: "Ensure /home/{{ user }}/src"
@@ -80,11 +80,4 @@
     group: "{{ user }}"
     mode: 0755
   become: false
-
-- name: "Ensure terraform {{ terraform_version }}"
-  unarchive:
-    src: "https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip"
-    dest: "/home/{{ user }}/src/"
-    remote_src: true
-
 
