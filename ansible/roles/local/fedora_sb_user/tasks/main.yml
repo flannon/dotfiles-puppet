@@ -1,8 +1,4 @@
 ---
-- include_tasks: repos.yml
-  tags:
-    - repos
-
 - include_tasks: users.yml
   tags:
     - users

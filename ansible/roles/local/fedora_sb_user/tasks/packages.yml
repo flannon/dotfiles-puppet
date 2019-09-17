@@ -4,33 +4,6 @@
     #name: '*'
     #state: "{{ package_state }"
 
-- name: Ensure vim
-  dnf:
-    name: vim-enhanced
-    state: "{{ package_state }}"
-
-- name: Ensure libXScrnSaver and libXScrnSaver-devel
-  dnf:
-    name:
-      - libXScrnSaver
-      - libXScrnSaver-devel
-    state: "{{ package_state }}"
-
-- name: vscode repo file
-  template: 
-    src: templates/vscode.repo.j2
-    dest: /etc/yum.repos.d/vscode.repo
-    owner: root
-    group: root
-    mode: 0644
-
-- name: Ensure VSCode
-  dnf:
-    name: code
-    #state: "{{ package_state }}"
-    update_cache: true
-    state: latest
- 
 - name: Group install Develoment tools
   dnf:
     name: '@Development Tools'
@@ -46,88 +19,42 @@
 #    name: snapd
 #    state: "{{ package_state }}"
 
-- name: Ensure git
+- name: Ensure packages
   dnf:
-    name: git
+    name: 
+      - ansible-openstack-modules
+      - binutils
+      - clang
+      - cmake
+      - device-mapper-persistent-data
+      - dkms
+      - dnf-utils
+      - facter
+      - git
+      - glibc-headers
+      - glibc-devel
+      - golang
+      - jq
+      - libgomp
+      - libxkbcommon
+      - make
+      - net-tools
+      - origin-clients
+      - patch
+      - python2-devel
+      - python3-devel
+      - python3-openstackclient
+      - python3-openstacksdk
+      -  python3-libselinux
+      - redhat-rpm-config
+      - rpmdevtools
     state: "{{ package_state }}"
 
-#- name: Ensure jq
-#  dnf:
-#    name: jq
-#    state: "{{ package_state }}"
-#  become: true
-#  become_user: root
-#  become_method: su
-
-- name: Ensure make
+- name: Ensure libXScrnSaver and libXScrnSaver-devel
   dnf:
-    name: make
-    state: "{{ package_state }}"
-
-- name: Ensure patch
-  dnf:
-    name: patch
-    state: "{{ package_state }}"
-
-#- name: Ensure binutils 
-#  dnf:
-#    name: binutils
-#    state: "{{ package_state }}"
-
-- name: Ensure clang
-  dnf:
-    name: clang
-    state: "{{ package_state }}"
-
-- name: Ensure cmake
-  dnf:
-    name: cmake
-    state: "{{ package_state }}"
-
-- name: Ensure dkms
-  dnf:
-    name: dkms
-    state: "{{ package_state }}"
-
-- name: Ensure dnf-utils
-  dnf:
-    name: dnf-utils
-    state: "{{ package_state }}"
-
-- name: Ensure device-mapper-persistent-data
-  dnf:
-    name: device-mapper-persistent-data
-    state: "{{ package_state }}"
-
-- name: Ensure facter
-  dnf:
-    name: facter
-    #state: "{{ package_state }}"
-    state: latest
-
-- name: Ensure glibc-devel
-  dnf:
-    name: glibc-devel
-    state: "{{ package_state }}"
-
-- name: Ensure glibc-headers
-  dnf:
-    name: glibc-headers
-    state: "{{ package_state }}"
-
-- name: Ensure libgomp
-  dnf:
-    name: libgomp
-    state: "{{ package_state }}"
-
-- name: Install python3-libselinux
-  dnf:
-    name: python3-libselinux
-    state: "{{ package_state }}"
-
-- name: Install libxkbcommon
-  dnf:
-    name: libxkbcommon
+    name:
+      - libXScrnSaver
+      - libXScrnSaver-devel
     state: "{{ package_state }}"
 
 #- name: Install lvm2
@@ -145,14 +72,14 @@
 #    name: openconnect
 #    state: "{{ package_state }}"
 
-- name: Install python2-devel
+- name: Ensure openmpi
   dnf:
-    name: python2-devel
-    state: "{{ package_state }}"
-
-- name: Install python3-devel
-  dnf:
-    name: python3-devel
+    name:
+      - openmpi
+      - openmpi-devel
+      - mpich
+      - slurm-torque
+      - perl-Switch
     state: "{{ package_state }}"
 
 #- name: Install qt5-qtx11extras
@@ -160,43 +87,41 @@
 #    name: qt5-qtx11extras
 #    state: "{{ package_state }}"
 
-- name: Install redhat-rpm-config
+- name: Ensure vim
   dnf:
-    name: redhat-rpm-config
+    name: vim-enhanced
     state: "{{ package_state }}"
 
-- name: Ensure rpmdevtools
-  dnf:
-    name: rpmdevtools
-    state: "{{ package_state }}"
+- name: vundle install
+  command: "/usr/bin/vim +PluginInstall +qall"
+  become: true
+  become_user: "{{ user }}"
 
-- name: Ensure python3-openstackclient
-  dnf:
-    name: python3-openstackclient
-    state: "{{ package_state }}"
+- name: vscode repo file
+  template: 
+    src: templates/vscode.repo.j2
+    dest: /etc/yum.repos.d/vscode.repo
+    owner: root
+    group: root
+    mode: 0644
 
-- name: Ensure python3-openstacksdk
+- name: Ensure VSCode
   dnf:
-    name: python3-openstacksdk
-    state: "{{ package_state }}"
-
-- name: Ensure ansible-openstack-modules
-  dnf:
-    name: ansible-openstack-modules
-    state: "{{ package_state }}"
-
-- name: Ensure origin-clients
-  dnf:
-    name: origin-clients
-    state: "{{ package_state }}"
-
-- name: Ensure golang
-  dnf:
-    name: golang
-    state: "{{ package_state }}"
-
-#- name: Ensure google-cloud-sdk
-   #dnf:
-    #name: google-cloud-sdk
+    name: code
     #state: "{{ package_state }}"
+    update_cache: true
+    state: latest
+ 
+- name: "Ensure google-cloud-sdk.repo"
+  template:
+    src: templates/google-cloud-sdk.repo.j2
+    dest: /etc/yum.repos.d/google-cloud-sdk.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Ensure google-cloud-sdk
+  dnf:
+    name: google-cloud-sdk
+    state: "{{ package_state }}"
 
