@@ -23,6 +23,7 @@
   dnf:
     name: 
       - ansible-openstack-modules
+      - buildah
       - binutils
       - clang
       - cmake
@@ -41,6 +42,7 @@
       - net-tools
       - origin-clients
       - patch
+      - podman
       - python2-devel
       - python3-devel
       - python3-openstackclient
