@@ -9,10 +9,10 @@
     name: '@Development Tools'
     state: "{{ package_state }}"
 
-#- name: Ensure firefox
-#  dnf:
-#    name: firefox
-#    state: "{{ package_state }}"
+- name: Ensure openjdk
+  dnf:
+    name: java-latest-openjdk
+    state: "{{ package_state }}"
 
 #- name: Ensure snapd for snap package management
 #  dnf:
@@ -35,6 +35,7 @@
       - glibc-devel
       - golang
       - jq
+      - libreoffice
       - libgomp
       - libxkbcommon
       - make
@@ -111,17 +112,3 @@
     #state: "{{ package_state }}"
     update_cache: true
     state: latest
- 
-- name: "Ensure google-cloud-sdk.repo"
-  template:
-    src: templates/google-cloud-sdk.repo.j2
-    dest: /etc/yum.repos.d/google-cloud-sdk.repo
-    owner: root
-    group: root
-    mode: 0644
-
-- name: Ensure google-cloud-sdk
-  dnf:
-    name: google-cloud-sdk
-    state: "{{ package_state }}"
-
