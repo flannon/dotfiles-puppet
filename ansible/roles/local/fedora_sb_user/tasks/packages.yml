@@ -1,8 +1,15 @@
 ---
-#- name: dnf update
-  #dnf:
-    #name: '*'
-    #state: "{{ package_state }"
+- name: Ensure rpmfusion
+  dnf:
+    name: 
+      - http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm 
+      - http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm 
+    state: "{{ package_state }}"
+
+- name: dnf update
+  dnf:
+    name: "*"
+    state: latest
 
 - name: Group install Develoment tools
   dnf:
