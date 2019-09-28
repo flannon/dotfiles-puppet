@@ -9,11 +9,14 @@
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: system
+  become: true
 
 - name: Uninstall flatpaks
   flatpak:
     name: "{{ item }}"
     state: absent
+    method: system
   with_items:
     - com.visualstudio.code.oss
     - com.visualstudio.code
@@ -24,6 +27,8 @@
   flatpak:
     name: "{{ item }}"
     state: "{{ flatpak_state }}"
+    method: system
+  become: true
   with_items:
     - com.slack.Slack
     #- com.calibre_ebook.calibre
