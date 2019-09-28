@@ -27,8 +27,7 @@
   flatpak:
     name: "{{ item }}"
     state: "{{ flatpak_state }}"
-    method: system
-  become: true
+    method: user
   with_items:
     - com.slack.Slack
     #- com.calibre_ebook.calibre
